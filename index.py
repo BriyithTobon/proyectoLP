@@ -11,7 +11,9 @@ import Comida as c
 # Instancia de Game
 juego = g.Game(0.2)
 juego.puntaje("white")
-pos=[["1","1","0","0"],["1","1","0","1"],["0","0","1","0"],["0","1","1","1"]]
+pos=[["1","1","1"],
+     ["1","0","1"],
+     ["1","1","1"]]
 n=len(pos)
 size=n*50
 # Instancia de Screen
@@ -29,17 +31,14 @@ comida.posMin(pos)
 while juego.running:
     # Actualizacuón de la ventana
     ventana.ventana.update()
-
     # Comprueba la bandera de perder
     if juego.perder:
         juego.alPerder(snake)
 #-----------------------------------------------------
     # Comprueba si colisionó con la comida
-    """if comida.alColisionar(snake, juego):
-        comida.alColisionar(snake, juego)
-        snake.moverCuerpo()
-        continue
-        juego.alPerder(snake)"""
+    if comida.alColisionar(snake, pos):
+        print("xxx")
+        #juego.alPerder(snake)
 #--------------------------------------------------
     # Mueve el cuerpo de la serpiente
     snake.moverCuerpo()

@@ -28,7 +28,7 @@ class Comida():
       des=0
       if sizeMat%2==0:
         des=25
-      print(sizeMat)
+      #print(sizeMat)
       for i in range(sizeMat):
         for j in range(sizeMat):
           if pos[i][j]=="1":
@@ -44,34 +44,13 @@ class Comida():
 
           
     # Método de cuando la serpiente colisiona con la comida
-    def alColisionar(self, serpiente, game):
-        if serpiente.cabeza.distance(self.comida) < 50:
-            condicion = True
-            while condicion:
-                # Posición random
-                x = (random.randint(0, 19)*50+25)-(self.lado/2)
-                y = (random.randint(0, 19)*50+25)-(self.lado/2)
-
-                # Comprueba que no coincida con el cuerpo de la serpiente
-                if len(serpiente.segmentos)>0:
-                    for seg in serpiente.segmentos:
-                        if x==seg.xcor() and y==seg.ycor():
-                            condicion = True
-                            break
-                        else:
-                            condicion = False
-                else:
-                    condicion = False
-            # Mueve la comida a la nueva posición
-            self.comida.goto(x,y)
-
-            # Se suma el puntaje
-            game.actualizarPuntaje(10)
-            
-            # Se le agrega un nuevo segmento a la sepiente
-            serpiente.agregarSegmentos()
-
-            return True
-        else:
-            return False     
+    def alColisionar(self, serpiente, pos):
+      #return pos[serpiente.cabeza.ycor()][serpiente.cabeza.xcor()]=="1"
+      sizeMat=len(pos)
+      des=0
+      if sizeMat%2==0:
+        des=25
+      #print(-(serpiente.cabeza.ycor()-50-des)/50,(serpiente.cabeza.xcor()+50+des)/50)
+      return pos[int(-(serpiente.cabeza.ycor()-50-des)/50)][int((serpiente.cabeza.xcor()+50+des)/50)]=="1"
+         
 

@@ -59,4 +59,26 @@ class Screen():
             arena.pendown()
             arena.forward(self.lado)
             arena.penup()
+        """"
+        arena.goto(-(self.lado/2),-(self.lado/2))
+        arena.pendown()
+        arena.color(colorBorde)
+        for i in range(4):
+            arena.forward(self.lado)
+            arena.left(90)
+
+        for i in range(int(self.lado/50)):
+            arena.goto(-(self.lado/2),-(self.lado/2)+50*i)
+            arena.pendown()
+            arena.forward(self.lado)
+            arena.penup()
+        
+        arena.left(90)
+
+        for i in range(int(self.lado/50)):
+            arena.goto(-(self.lado/2)+50*i,-(self.lado/2))
+            arena.pendown()
+            arena.forward(self.lado)
+            arena.penup()
+        """
         self.ventana.update()

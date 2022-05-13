@@ -7,15 +7,9 @@ class Serpiente():
     #Atributo de lista de los segmentos del snake
     segmentos = []
 
-    def __init__(self, colorCabeza, colorSegmento,size):
-        x=0
-        y=0
-        if (size/50)%2==0:
-            x=-25
-            y=-25
-        else:
-          x=50
-          y=50
+    def __init__(self, colorCabeza, colorSegmento,size,posx,posy):
+        x=posx*50-size/2+25
+        y=-posy*50+size/2-25
         self.cabeza = turtle.Turtle()
         self.cabeza.speed(1)
         self.cabeza.shape('img/Naveespacial.gif')

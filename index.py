@@ -11,17 +11,23 @@ import Comida as c
 # Instancia de Game
 juego = g.Game(0.2)
 juego.puntaje("white")
-pos=[["1","1","1"],
-     ["1","0","1"],
-     ["1","1","1"]]
+pos=[["1","1","1","1","1","1","1"],
+     ["1","0","0","0","0","0","1"],
+     ["1","0","0","1","0","0","1"],
+     ["1","0","0","0","0","0","1"],
+     ["1","0","0","1","0","0","1"],
+     ["1","0","0","0","0","0","1"],
+     ["1","1","1","1","1","1","1"]]
+posx=3
+posy=1
 n=len(pos)
 size=n*50
 # Instancia de Screen
 ventana = s.Screen(600,600,"Snake", "black", juego)
-ventana.setArena(size,"green",False)
+ventana.setArena(size,"white",False)
 
 # Instancia de Serpiente
-snake = ser.Serpiente("white","#834827",size)
+snake = ser.Serpiente("white","#834827",size,posx,posy)
 snake.controles(ventana.ventana,"Up","Down", "Left", "Right")
 
 # Instancia de comida
@@ -37,8 +43,7 @@ while juego.running:
 #-----------------------------------------------------
     # Comprueba si colisionó con la comida
     if comida.alColisionar(snake, pos):
-        print("xxx")
-        #juego.alPerder(snake)
+        juego.alPerder(snake)
 #--------------------------------------------------
     # Mueve el cuerpo de la serpiente
     snake.moverCuerpo()

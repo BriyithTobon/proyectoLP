@@ -7,15 +7,20 @@ import Game2 as g
 import Screen as s
 import Rabbit as ser
 import Comida as c
+#-------------------------------------Serial-------------------------------------------#
+import serial, time, json
+hw_sensor = serial.Serial(port='COM3', baudrate=9600, timeout=1, write_timeout=1)
+raw_string_j = json.loads('{"x":"0","y":"0"}')
+#---------------------------------------------------------------------------------------
 
 # Instancia de Game
 juego = g.Game(0.2)
 juego.puntaje("white")
 pos=[["1","1","1","1","1","1","1"],
      ["1","0","0","0","0","0","1"],
-     ["1","0","0","1","0","0","1"],
      ["1","0","0","0","0","0","1"],
-     ["1","0","0","1","0","0","1"],
+     ["1","0","0","0","0","0","1"],
+     ["1","0","0","0","0","0","1"],
      ["1","0","0","0","0","0","1"],
      ["1","1","1","1","1","1","1"]]
 posx=3
@@ -35,6 +40,13 @@ comida = c.Comida("blue",ventana,size)
 comida.posMin(pos)
 # Loop Principal
 while juego.running:
+#----------------------JOYSTIC-------------------------------------
+    raw_string_b = hw_sensor.readline()
+    raw_string_s = raw_string_b.decode('utf-8')
+    if(len(raw_string_s)>0):
+            raw_string_j = json.loads(raw_string_s)
+#-----------------------------------------------------------------------
+
     # Actualizacuón de la ventana
     ventana.ventana.update()
     # Comprueba la bandera de perder
@@ -49,7 +61,7 @@ while juego.running:
     snake.moverCuerpo()
 
     # Mueve la cabeza de la serpiente
-    snake.movimiento(juego,ventana)
+    snake.movimiento(juego,ventana,raw_string_j)
 
     # Comprueba si la serpiente colisionó consigo misma
     snake.colision(juego)

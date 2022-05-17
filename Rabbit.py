@@ -78,6 +78,40 @@ class Serpiente():
                 juego.perder = True
         self.cabeza.direction = "stop"
     
+
+    # Método principal de movimiento
+    def movimiento(self, juego, screen,joystic):
+        x=joystic["x"]
+        y=joystic["y"]
+        if y == "1":
+            y = self.cabeza.ycor()
+            if y < ((screen.lado/2)-50):
+                self.cabeza.sety(y + 50)
+            else:
+                juego.perder = True
+
+        if y == "-1":
+            y = self.cabeza.ycor()
+            if y > (-(screen.lado/2)+50):
+                self.cabeza.sety(y - 50)
+            else:
+                juego.perder = True
+
+        if x == "-1":
+            x = self.cabeza.xcor()
+            if x > (-(screen.lado/2)+50):
+                self.cabeza.setx(x - 50)
+            else:
+                juego.perder = True
+        if x == "1":
+            x = self.cabeza.xcor()
+            if x<((screen.lado/2)-50):
+                self.cabeza.setx(x + 50)
+            else:
+                juego.perder = True
+        self.cabeza.direction = "stop"
+
+
     # Método para agregar segmentos
     def agregarSegmentos(self):
         self.nuevo_segmento = turtle.Turtle()

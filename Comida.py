@@ -31,7 +31,6 @@ class Comida():
             self.comida.penup()
             self.comida.goto(x,y)
       return True
-
           
     # Método de cuando la serpiente colisiona con la comida
     def alColisionar(self, serpiente, pos):

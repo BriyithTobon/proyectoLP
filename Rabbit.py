@@ -80,7 +80,7 @@ class Serpiente():
     
 
     # Método principal de movimiento
-    def movimiento(self, juego, screen,joystic):
+    def movimiento2(self, juego, screen,joystic):
         x=joystic["x"]
         y=joystic["y"]
         if y == "1":

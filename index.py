@@ -9,7 +9,7 @@ import Rabbit as ser
 import Comida as c
 #-------------------------------------Serial-------------------------------------------#
 import serial, time, json
-hw_sensor = serial.Serial(port='COM3', baudrate=9600, timeout=1, write_timeout=1)
+#hw_sensor = serial.Serial(port='COM3', baudrate=9600, timeout=1, write_timeout=1)
 raw_string_j = json.loads('{"x":"0","y":"0"}')
 #---------------------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ pos=[["1","1","1","1","1","1","1"],
      ["1","0","0","0","0","0","1"],
      ["1","1","1","1","1","1","1"]]
 posx=3
-posy=1
+posy=3
 n=len(pos)
 size=n*50
 # Instancia de Screen
@@ -41,10 +41,10 @@ comida.posMin(pos)
 # Loop Principal
 while juego.running:
 #----------------------JOYSTIC-------------------------------------
-    raw_string_b = hw_sensor.readline()
+    """raw_string_b = hw_sensor.readline()
     raw_string_s = raw_string_b.decode('utf-8')
     if(len(raw_string_s)>0):
-            raw_string_j = json.loads(raw_string_s)
+            raw_string_j = json.loads(raw_string_s)"""
 #-----------------------------------------------------------------------
 
     # Actualizacuón de la ventana
@@ -61,7 +61,7 @@ while juego.running:
     snake.moverCuerpo()
 
     # Mueve la cabeza de la serpiente
-    snake.movimiento(juego,ventana,raw_string_j)
+    snake.movimiento(juego,ventana)
 
     # Comprueba si la serpiente colisionó consigo misma
     snake.colision(juego)
